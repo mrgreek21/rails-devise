@@ -11,7 +11,57 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140224203311) do
+ActiveRecord::Schema.define(version: 20160811232222) do
+
+  create_table "events", force: :cascade do |t|
+    t.string   "name",        default: "", null: false
+    t.integer  "host_id",                  null: false
+    t.text     "description", default: "", null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
+
+  create_table "guests", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "event_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "hosts", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "event_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "rsvps", force: :cascade do |t|
+    t.integer  "guest_id"
+    t.boolean  "attending"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "seating_plans", force: :cascade do |t|
+    t.integer  "event_id"
+    t.integer  "head_table_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  create_table "seats", force: :cascade do |t|
+    t.integer  "table_id"
+    t.integer  "guest_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "tables", force: :cascade do |t|
+    t.integer  "seating_plan_id"
+    t.integer  "table_num",       default: 0, null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
