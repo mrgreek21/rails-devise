@@ -1,2 +1,13 @@
-<h1>EventsController#new</h1>
-<p>Find me in app/views/events/new.html.erb</p>
+=<div class="container">
+  <div class="row">
+    <h3>Create an Event</h3>
+    <div class="column">
+      <%= form_for(@event) do |f| %>
+        <%= f.label :name %>
+        <%= f.text_field :name %>
+
+        <%= f.submit "Create my Event", class: "btn btn-primary" %>
+      <% end %>
+    </div>
+  </div>
+</div>

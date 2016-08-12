@@ -13,8 +13,23 @@ class EventsController < ApplicationController
   end
 
   def new
+    @event = Event.new
   end
 
   def create
+    @event = Event.new(event_params)
+    @host = Host.create(:user => current_user)
+    @event.host = @host
+    
+    if @event.save!
+      redirect_to :controller => 'events', :action => 'index'
+    else
+      redirect_to :controller => 'events', :action => 'new'
+    end
   end
+end
+
+private
+def event_params
+  params.require(:event).permit(:name)
 end
