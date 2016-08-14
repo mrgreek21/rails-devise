@@ -1,0 +1,11 @@
+<div class="container">
+  <div class="row">
+    <h3>Add a Seating Plan</h3>
+    <div class="column">
+      <%= form_for(@seating_plan) do |f| %>
+      	<%= f.hidden_field :event_id, :value => @event.id %>
+        <%= f.submit "Add Seating Plan", class: "btn btn-primary" %>
+      <% end %>
+    </div>
+  </div>
+</div>
