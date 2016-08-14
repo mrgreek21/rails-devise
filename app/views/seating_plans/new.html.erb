@@ -4,6 +4,8 @@
     <div class="column">
       <%= form_for(@seating_plan) do |f| %>
       	<%= f.hidden_field :event_id, :value => @event.id %>
+      	<%= label_tag :num_tables, "How many tables?" %>
+      	<%= text_field_tag :num_tables %>
         <%= f.submit "Add Seating Plan", class: "btn btn-primary" %>
       <% end %>
     </div>
